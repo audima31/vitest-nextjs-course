@@ -10,8 +10,6 @@ npm install
 
 Then run the dev server to preview the site in a browser:
 
-First, install the dependencies:
-
 ```bash
 npm run dev
 ```
