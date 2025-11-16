@@ -34,7 +34,6 @@ export interface SignupFormProps {
 export default function SignupForm({ onSubmit }: SignupFormProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const router = useRouter()
 
   const emailIssues = assessEmail(email)
   const passwordIssues = assessPassword(password)
@@ -45,7 +44,6 @@ export default function SignupForm({ onSubmit }: SignupFormProps) {
 
     if (isValid) {
       if (onSubmit) onSubmit(email, password)
-      else router.push('/books')
     }
   }
 
