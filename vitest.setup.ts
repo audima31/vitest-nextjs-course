@@ -25,4 +25,5 @@ vi.mock("next/navigation", () => ({
     refresh,
   }),
   useParams: vi.fn(),
+  notFound: vi.fn(),
 }));

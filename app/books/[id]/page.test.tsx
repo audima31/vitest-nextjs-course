@@ -1,5 +1,9 @@
-import { screen, render } from "@testing-library/react";
-import { useParams } from "next/navigation";
+import {
+  screen,
+  render,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
+import { useParams, notFound } from "next/navigation";
 import BookDetailPage from "./page";
 
 describe("Book Detail Page", () => {
@@ -13,5 +17,15 @@ describe("Book Detail Page", () => {
 
     expect(bookTitle).toBeInTheDocument();
     expect(bookAuthor).toBeInTheDocument();
+  });
+
+  it("should call notFound for invalid book id", async () => {
+    vi.mocked(useParams).mockReturnValue({ id: "999" }); //Berguna untuk mensimulasikan parameter id yang tidak valid
+
+    render(<BookDetailPage />);
+    const loadingMessage = screen.getByText(/loading/i);
+    await waitForElementToBeRemoved(loadingMessage);
+    
+    expect(notFound).toHaveBeenCalled();
   });
 });
